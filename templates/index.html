@@ -1,16 +1,37 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% load static %}
+<html lang="en">
+<head>
+  <title>CinemaToday</title>
+  <link rel="stylesheet" type="text/css" href="{% static '/css/styles.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/index.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Pacifico&display=swap" rel="stylesheet">
+  <script src="{% static '/js/detail.js' %}"></script>
+</head>
+<body>
+<div class="grid-container">
+  <header class="header">
+    CinemaToday
+  </header>
   {% if movies %}
     <div class="scroller">
-      {% for movie in movies %}
-        <article class="scroller-item">
-          <img class="scroller-item-img" src="{{ movie.image }}" onclick="openModal({{ movie.id }})"/>
-        </article>
-      {% endfor %}
+      <div class="scroller-items">
+        {% for movie in movies %}
+          <article class="scroller-item">
+            <img class="scroller-item-img" src="{{ movie.image }}" onclick="openModal({{ movie.id }})"/>
+          </article>
+        {% endfor %}
+      </div>
     </div>
   {% else %}
     <p>No movies!</p>
   {% endif %}
-{% endblock %}
+  <footer class="footer">
+    <p>Karol Winiarski
+      <br>
+      <a href="https://github.com/kwiniarski97/" target="_blank">github</a>
+    <p></p>
+  </footer>
+</div>
+</body>
+</html>
 
