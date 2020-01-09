@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: movies_website recipes.wsgi --log-file -
+web: gunicorn movies_website.wsgi --log-file -
