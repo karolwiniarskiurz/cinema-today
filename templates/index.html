@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% if movies %}
+    <div class="scroller">
+      {% for movie in movies %}
+        <article class="scroller-item">
+          <img class="scroller-item-img" src="{{ movie.image }}" onclick="openModal({{ movie.id }})"/>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No movies!</p>
+  {% endif %}
+{% endblock %}
+

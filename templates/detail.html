@@ -1,0 +1,110 @@
+{% load static %}
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+  <script>
+    if (window.parent === window) {
+      {#window.location.href = '/'#}
+    }
+
+    function close() {
+      window.parent.removeModalIfOpen();
+    }
+
+    window.onload = function() {
+      document.getElementById('close').addEventListener('click', close)
+    }
+  </script>
+  <style>
+    body {
+      font-family: "Open Sans", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+      overflow-x: hidden;
+      min-width: 320px;
+    }
+
+    .title {
+      text-decoration: underline;
+    }
+
+    .image {
+      position: absolute;
+      margin: auto;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+
+    }
+
+    @media (min-width: 768px) {
+      .image {
+        min-height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    #close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 2rem;
+      font-weight: bold;
+      transform: scaleX(1.3);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+{% if movie %}
+  <button id="close">X</button>
+  <div class="row" style="height: 100%">
+    <div class="col-12 col-md-6 overflow-hidden">
+      <img src="{{ movie.image }}" class="image">
+    </div>
+    <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
+      <h1 class="title">{{ movie.title }}</h1>
+      <p class="description">{{ movie.description }}</p>
+      <p>
+        <i>Genre:</i>
+        <span>{{ movie.genre }}</span>
+      </p>
+      <p>
+        <i>Release date:</i>
+        <span>{{ movie.release_year }}</span>
+      </p>
+      <p>
+        <i>Country:</i>
+        <span>{{ movie.country }}</span>
+      </p>
+      <p>
+        <i>Director:</i>
+        <span>{{ movie.director }}</span>
+      </p>
+      <p>
+        <i>Writer:</i>
+        <span>{{ movie.writer }}</span>
+      </p>
+      <p>
+        <i>Cast:</i>
+      <ul>
+        {% for actor in cast %}
+          <li>{{ actor.first_name }} {{ actor.last_name }}</li>
+        {% endfor %}
+      </ul>
+      </p>
+
+    </div>
+  </div>
+{% else %}
+  <p>No movie found :(</p>
+{% endif %}
+</body>
+</html>
