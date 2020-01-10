@@ -37,33 +37,3 @@ function removeModalIfOpen() {
     backdrop.remove();
   }
 }
-
-window.onload = function() {
-  var scroller = document.querySelector('.scroller-items');
-  let isDown = false;
-  let startX;
-  let scrollLeft;
-
-  scroller.addEventListener('mousedown', (e) => {
-    isDown = true;
-    scroller.classList.add('active');
-    startX = e.pageX - scroller.offsetLeft;
-    scrollLeft = scroller.scrollLeft;
-
-  });
-  scroller.addEventListener('mouseleave', () => {
-    isDown = false;
-    scroller.classList.remove('active');
-  });
-  scroller.addEventListener('mouseup', () => {
-    isDown = false;
-    scroller.classList.remove('active');
-  });
-  scroller.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    var x = e.pageX - scroller.offsetLeft;
-    var walk = (x - startX); //scroll-fast
-    scroller.scrollLeft = scrollLeft - walk;
-  });
-};
