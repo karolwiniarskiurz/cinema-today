@@ -116,6 +116,13 @@ html {
         z-index: 2137;
     }
 
+    @media screen and (max-width: 576px) {
+        #movie-modal {
+            min-height: 100%;
+            min-width: 100%;
+        }
+    }
+
     #modal-backdrop {
         position: absolute;
         top: 0;
